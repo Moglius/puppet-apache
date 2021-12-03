@@ -4,8 +4,15 @@
 #
 # @example
 #   include apache
-class apache {
+class apache (
+  String  $package_name,
+  Integer $port,
+){
 
   notify { 'Using apache module': }
+
+  notify { "port number: ${port}": }
+
+  notify { "package name: ${package_name}": }
 
 }
