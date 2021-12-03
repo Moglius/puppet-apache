@@ -9,10 +9,14 @@ class apache (
   Integer $port,
 ){
 
-  notify { 'Using apache module': }
+  package { $package_name:
+    ensure => installed,
+    alias  => 'package',
+  }
 
-  notify { "port number: ${port}": }
-
-  notify { "package name: ${package_name}": }
+  service { $package_name:
+    ensure    => running,
+    subscribe => Package['package'],
+  }
 
 }
