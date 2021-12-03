@@ -24,11 +24,13 @@ class apache (
     group   => 'root',
     mode    => '0644',
     content => $config_content,
+    notify  => Service['apache_service'],
   }
 
   service { $package_name:
     ensure    => running,
     subscribe => Package['package'],
+    alias     => 'apache_service',
   }
 
 }
