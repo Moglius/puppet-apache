@@ -1,2 +1,4 @@
 apache::package_name: httpd
 apache::port: 8081
+apache::conf_file: /etc/httpd/conf/httpd.conf
+apache::template_file: httpd.conf.epp
