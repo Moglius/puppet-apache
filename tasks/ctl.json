@@ -1,0 +1,11 @@
+{
+  "puppet_task_version": 1,
+  "supports_noop": false,
+  "description": "Run Administrative tasks with apachectl command",
+  "parameters": {
+    "cmd": {
+      "description": "runs a cmd with apachectl",
+      "type": "Enum[start, stop, restart, graceful, graceful-stop]"
+    }
+  }
+}
