@@ -9,20 +9,20 @@ define apache::vhost (
   String  $document_root,
 ) {
 
+  $apache_user = lookup('apache::apache_user')
+
   # root Directory
   file { $document_root:
     ensure => directory,
-    owner  => $apache::apache_user,
-    group  => $apache::apache_user,
+    owner  => $apache_user,
+    group  => $apache_user,
     before => File['index_file'],
   }
 
-  notify { "apache user ${lookup('apache::apache_user')}": }
-
   file { "${document_root}/index.html":
     ensure  => present,
-    owner   => 'apache',
-    group   => 'apache',
+    owner   => $apache_user,
+    group   => $apache_user,
     content => "Hello from ${facts['fqdn']}",
     alias   => 'index_file'
   }
