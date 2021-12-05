@@ -19,8 +19,8 @@ define apache::vhost (
 
   file { "${document_root}/index.html":
     ensure  => present,
-    owner   => $apache::apache_user,
-    group   => $apache::apache_user,
+    owner   => $apache_user,
+    group   => $apache_user,
     content => "Hello from ${facts['fqdn']}",
     require => File['document_root_folder'],
   }
