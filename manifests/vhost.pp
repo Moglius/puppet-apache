@@ -37,14 +37,16 @@ define apache::vhost (
     group   => 'root',
     content => template('apache/virtualhost.erb'),
     notify  => Service['apache_service'],
+    alias   => 'vhost_file',
   }
 
   if $facts['osfamily'] == 'Debian' {
     exec { 'run a2ensite':
-      command => "/usr/sbin/a2ensite ${$vhost_name}.conf",
-      path    => '/usr/bin:/usr/sbin:/bin',
-      cwd     => $apache_conf_dir,
-      notify  => Service['apache_service'],
+      command   => "/usr/sbin/a2ensite ${$vhost_name}.conf",
+      path      => '/usr/bin:/usr/sbin:/bin',
+      cwd       => $apache_conf_dir,
+      notify    => Service['apache_service'],
+      subscribe => File['vhost_file'],
     }
   }
 
