@@ -24,7 +24,8 @@ define apache::vhost (
     owner   => $apache_user,
     group   => $apache_user,
     content => "Hello from ${facts['fqdn']}",
-    alias   => 'index_file'
+    alias   => 'index_file',
+    notify  => Service['apache_service'],
   }
 
 }
