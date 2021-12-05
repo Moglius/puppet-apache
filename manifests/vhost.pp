@@ -39,4 +39,10 @@ define apache::vhost (
     notify  => Service['apache_service'],
   }
 
+  exec { 'run a2ensite':
+    command => "/usr/sbin/a2ensite ${apache_conf_dir}${$vhost_name}.conf",
+    cwd     => $apache_conf_dir,
+    unless  => $facts['os.family'] != 'Debian',
+  }
+
 }
