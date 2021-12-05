@@ -11,6 +11,7 @@ define apache::vhost (
 
   $apache_user = lookup('apache::apache_user')
   $apache_conf_dir = lookup('apache::conf_dir')
+  $port = lookup('apache::port')
 
   # root Directory
   file { $document_root:
