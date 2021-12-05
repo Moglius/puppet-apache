@@ -30,7 +30,7 @@ define apache::vhost (
   }
 
   # Creating a new vhost config file
-  file { "${apache_conf_dir}${$vhost_name}":
+  file { "${apache_conf_dir}${$vhost_name}.conf":
     ensure  => file,
     owner   => 'root',
     group   => 'root',
