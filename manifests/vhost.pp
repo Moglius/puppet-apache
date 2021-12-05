@@ -14,13 +14,15 @@ define apache::vhost (
     ensure => directory,
     owner  => $apache::apache_user,
     group  => $apache::apache_user,
+    alias  => 'document_root_folder',
   }
 
   file { "${document_root}/index.html":
     ensure  => present,
     owner   => $apache::apache_user,
     group   => $apache::apache_user,
-    content => "Hello from ${facts['fqdn']}"
+    content => "Hello from ${facts['fqdn']}",
+    require => File['documet_root_folder'],
   }
 
 }
