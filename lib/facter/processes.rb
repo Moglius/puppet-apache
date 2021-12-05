@@ -7,7 +7,7 @@ Facter.add(:apache_processes) do
     case Facter.value(:osfamily)
     when 'Debian'
       Facter::Core::Execution.execute('pgrep apache2 | wc -l')
-    when 'Red_Hat'
+    when 'RedHat'
       Facter::Core::Execution.execute('pgrep httpd | wc -l')
     end
   end
