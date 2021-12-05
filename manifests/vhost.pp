@@ -20,7 +20,7 @@ define apache::vhost (
     ensure  => present,
     owner   => $apache::apache_user,
     group   => $apache::apache_user,
-    content => "Hello from ${facts.fqdn}"
+    content => "Hello from ${facts['fqdn']}"
   }
 
 }
