@@ -1,0 +1,10 @@
+<VirtualHost *:<%= @port %>>
+  ServerName "<%= @vhost_name %>"
+  DocumentRoot "<%= @document_root %>"
+
+  <Directory "<%= @document_root %>">
+    AllowOverride All
+    Options -Indexes +FollowSymLinks
+    Require all granted
+  </Directory>
+</VirtualHost>
