@@ -22,7 +22,7 @@ define apache::vhost (
     owner   => $apache::apache_user,
     group   => $apache::apache_user,
     content => "Hello from ${facts['fqdn']}",
-    require => File['documet_root_folder'],
+    require => File['document_root_folder'],
   }
 
 }
