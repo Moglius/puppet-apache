@@ -2,3 +2,5 @@ apache::package_name: apache2
 apache::port: 8087
 apache::conf_file: /etc/apache2/ports.conf
 apache::template_file: ports.conf.epp
+
+apache::apache_user: "www-data"
