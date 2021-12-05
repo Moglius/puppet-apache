@@ -10,6 +10,7 @@ define apache::vhost (
 ) {
 
   $apache_user = lookup('apache::apache_user')
+  $apache_conf_dir = lookup('apache::conf_dir')
 
   # root Directory
   file { $document_root:
@@ -23,9 +24,17 @@ define apache::vhost (
     ensure  => present,
     owner   => $apache_user,
     group   => $apache_user,
-    content => "Hello from ${facts['fqdn']}",
+    content => "<h1>Hello from ${facts['fqdn']}</h1>",
     alias   => 'index_file',
     notify  => Service['apache_service'],
+  }
+
+  # Creating a new vhost config file
+  file { "${apache_conf_dir}${$vhost_name}":
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    content => template('apache/virtualhost.erb')
   }
 
 }
