@@ -17,7 +17,7 @@ define apache::vhost (
     before => File['index_file'],
   }
 
-  notify { "apache user ${apache_user}": }
+  notify { "apache user ${lookup('apache::apache_user')}": }
 
   file { "${document_root}/index.html":
     ensure  => present,
