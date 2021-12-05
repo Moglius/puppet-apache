@@ -34,7 +34,8 @@ define apache::vhost (
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    content => template('apache/virtualhost.erb')
+    content => template('apache/virtualhost.erb'),
+    notify  => Service['apache_service'],
   }
 
 }
